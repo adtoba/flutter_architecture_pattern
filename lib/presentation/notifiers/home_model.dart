@@ -25,9 +25,9 @@ class HomeModel extends ChangeNotifier {
   ProfileData get profile => _profile;
 
   Future<void> getUser(String name) async {
+    _status = Status.LOADING;
+    notifyListeners();
     final result = await _getUserRepository(name);
-
-
     result.fold(
       (e) {
         _error = 'fail';
